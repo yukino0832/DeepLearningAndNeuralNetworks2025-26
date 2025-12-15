@@ -4,3 +4,4 @@ results/
 datasets/
 image_test/
 aclImdb/
+fashion-mnist/
