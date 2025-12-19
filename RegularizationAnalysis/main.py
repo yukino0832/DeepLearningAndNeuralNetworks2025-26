@@ -132,11 +132,11 @@ if __name__ == '__main__':
         'min_val_loss': 1,
         'stop': False,
         'MAX_COUNT': 10,
-        'weight_decay': 0.0001 # L2正则化系数
+        'weight_decay': 0.00001 # L2正则化系数
     })
 
     fc_loss, fc_acc, _ = train(batchnorm=False, dropout=False, l2=False, earlystop=False)
-    dropout_loss, dropout_acc, _ = train(batchnorm=False, dropout=True, l2=False, earlystop=False)
-    l2_loss, l2_acc, _ = train(batchnorm=False, dropout=False, l2=True, earlystop=False)
+    dropout_loss, dropout_acc, _ = train(batchnorm=True, dropout=True, l2=False, earlystop=False)
+    l2_loss, l2_acc, _ = train(batchnorm=True, dropout=False, l2=True, earlystop=False)
     drawCurves(fc_loss, 'fc_loss', dropout_loss, 'dropout_loss', l2_loss, 'l2_loss')
     drawCurves(fc_acc, 'fc_acc', dropout_acc, 'dropout_acc', l2_acc, 'l2_acc')
