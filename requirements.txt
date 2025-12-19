@@ -6,3 +6,4 @@ matplotlib
 tensorboard
 lightning
 easydict
+nltk
