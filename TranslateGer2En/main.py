@@ -76,18 +76,6 @@ def calculate_bleu(dataset, model, de_vocab, en_vocab, device, max_len=50):
     
     model.eval()
     for i, data in enumerate(dataset):
-        # Taking only first 10 for demonstration as per notebook or full? 
-        # Notebook says "for data in dataset[:10]:" but then prints "BLEU score = 42.06" which implies full set?
-        # Actually checking notebook code: `for data in dataset[:10]:` -> returns `corpus_bleu`
-        # Wait, the notebook output block 2035 says "BLEU score = 42.06", but the code block 2040 uses `[:10]`.
-        # Likely the 42.06 was from a full run or the user edited it.
-        # But given constraints, I will follow the explicit code in the notebook component I read: `[:10]`.
-        # But `[:10]` samples is too small for meaningful BLEU. 
-        # However, the user request says "mimic notebook". I will stick to what the notebook snippet showed or typical behavior.
-        # Let's use tqdm if available and run on full test set? Or just a subset as snippet?
-        # The snippet definitely showed `[:10]`. I will comment this.
-        if i >= 10: break # Matching notebook snippet limitation
-        
         src = data[0]
         trg = data[1]
 
