@@ -1,14 +1,14 @@
 import lightning
 import torchmetrics
 import torch
-from model.FNN import FNN
+from model.LeNet import LeNet5
 import os
 import json
 
 class MinstDetectModel(lightning.LightningModule):
     def __init__(self, args):
         super().__init__()
-        self.model = FNN() if args.model == 'FNN' else None
+        self.model = LeNet5() if args.model == 'LeNet5' else None
         self.lr = args.lr
         self.train_acc = torchmetrics.Accuracy(task="multiclass", num_classes=10)
         self.val_acc = torchmetrics.Accuracy(task="multiclass", num_classes=10)
@@ -49,7 +49,12 @@ class MinstDetectModel(lightning.LightningModule):
         return results
 
     def configure_optimizers(self):
-        return torch.optim.Adam(self.parameters(), lr=self.lr)
+        return torch.optim.SGD(
+                self.parameters(), 
+                lr=self.lr, 
+                momentum=0.9, 
+                weight_decay=0.0005
+            )
 
     def forward(self, x):
         return self.model(x)

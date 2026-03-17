@@ -3,7 +3,7 @@ import torch
 import argparse
 from torchvision import datasets
 from model.lightningmodel import MinstDetectModel
-from model.FNN import FNN
+from model.LeNet import LeNet5
 from data.dataset import MyDataset
 
 def get_args_parser():
